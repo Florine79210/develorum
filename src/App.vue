@@ -1,8 +1,15 @@
 <template>
   <Header />
   <div class="container-fluid">
-    <Form />
-    <MessagesList :messages="messages"/>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-3">
+        <Form />
+      </div>
+      <div class="col-md-6">
+        <MessagesList :messages="messages" />
+      </div>
+      <div class="col-md-3"></div>
+    </div>
   </div>
   <Footer />
 </template>
@@ -23,7 +30,7 @@ export default {
     Footer,
   },
 
-   data() {
+  data() {
     return {
       messages: null,
       error: false,
@@ -32,20 +39,17 @@ export default {
 
   created: function () {
     axios
-      .get(
-        "https://crudcrud.com/api/314b2cababf745bb80ae99ae80f0dd6a/message"
-      )
+      .get("https://crudcrud.com/api/6f2a8b6b84074d46bd27bfe50a20953e/message")
 
       .then((res) => {
         this.messages = res.data;
         console.log(this.messages);
       })
-         .catch((error) => {
-            this.error = true;
-            console.log(error);
-          });
-  }
-
+      .catch((error) => {
+        this.error = true;
+        console.log(error);
+      });
+  },
 };
 </script>
 

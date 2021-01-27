@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">Develorum</a>
+    <a class="navbar-brand ps-4 pe-4 siteName" href="#">Develorum</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -35,6 +35,11 @@ export default {
 </script>
 
 <style>
+.siteName {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 30px;
+  color: #01002a;
+}
 .navbar ul {
   list-style: none;
 }

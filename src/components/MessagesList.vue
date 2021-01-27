@@ -1,18 +1,19 @@
 <template>
-  <div class="container" id="messagesList">
+  <div v-if="$route.path == '/'" class="container" id="messagesList">
     <li class="list-unstyled" v-for="message in messages" :key="message.id">
       <Message
-        :id="message.id"
+        :id="message._id"
         :pseudo="message.pseudo"
         :city="message.city"
         :country="message.country"
         :title="message.title"
         :tags="message.tags"
-        :message="message.message"
+        :content="message.content"
         :date="message.date"
       />
     </li>
   </div>
+  <div v-else><router-view :key="$route.fullPath"></router-view></div>
 </template>
 
 <script>
@@ -28,5 +29,4 @@ export default {
 </script>
 
 <style>
-
 </style>

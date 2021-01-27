@@ -1,28 +1,40 @@
 <template>
   <div id="message" class="container mt-4">
     <div class="row justify-content-center">
-      <div class="card w-50 pe-0 ps-0">
+      <div class="card w-75 ps-0 pe-0">
         <div class="card-header">
-          <h4 class="card-title">{{ title }}</h4>
-          <h5 class="card-subtitle text-muted">
-            Posté par {{ pseudo }} le
-            {{ moment(message.date).format("DD.MM.YYYY à HH:mm") }}
+          <h4 class="card-title pt-2 pb-2 text-white">{{ title }}</h4>
+          <h5 class="card-subtitle pb-2 text-muted">
+            <span>Posté par {{ pseudo }} </span> &emsp; le
+            {{ moment(message.date).format("DD.MM.YYYY &ensp; à HH:mm") }}
           </h5>
         </div>
 
         <div class="card-body">
-          <p class="card-text">{{ message }}</p>
+          <p class="card-text">{{ content }}</p>
         </div>
 
-        <div class="card-footer">
-          <input id="inputModif" type="submit" value="Modifier" />
-          <input
-            v-on:click="deleteMessage()"
-            id="inputSupp"
+        <div class="card-footer d-flex justify-content-evenly">
+
+          <router-link :to="`/MessageModif/${id}`">
+          <button
+            id="btnModif"
+            class="pt-1 pe-2 ps-2 bg-white border-primary"
+            type="button"
+          >
+            <i class="fas fa-pencil-alt text-primary"></i>
+          </button>
+          </router-link>
+
+          <button
+            v-on:click="deleteMessage(id)"
+            id="btnSupp"
+            class="pt-1 pe-2 ps-2 bg-white border-danger"
             type="submit"
-            value="Supprimer"
             method="delete"
-          />
+          >
+            <i class="fas fa-trash-alt text-danger"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -35,64 +47,30 @@ import axios from "axios";
 
 export default {
   name: "Message",
-  props: ["id", "pseudo", "city", "coutry", "title", "message", "tags", "date"],
+  props: ["id", "pseudo", "city", "coutry", "title", "content", "tags", "date"],
 
   created: function () {
     this.moment = moment;
   },
 
-  //     data: {
-  //     result: ''
-  //   },
-
-  //   created: function(){
-  //     this.getResult();
-  //   },
-
-  //   methods: {
-
-  //     deleteData: function(result, id) {
-  //       axios.delete('https://my-json-server.typicode.com/json/posts/' + id)
-  //       .then(response => {
-  //         this.result.splice(id, 1)
-  //         console.log(this.result);
-  //       });
-  //     },
-
-  //     getResult: function() {
-  //       // this.results = 'Loading...';
-  //       axios.get('https://my-json-server.typicode.com/json/db')
-  //       .then(response => {
-  //         // console.log(response.data);
-  //         this.result = response.data.posts;
-  //         console.log(this.result);
-  //       });
-  //     }
-  //   }
-  //   });
-
   data() {
     return {
-      resut: "",
+      message: [],
       error: false,
     };
   },
 
-  created: function () {
-    this.getResult();
-  },
-
   methods: {
-    deleteMessage(message) {
+    deleteMessage(messageId) {
+      console.log("id" + messageId);
       axios
         .delete(
-          "https://crudcrud.com/api/314b2cababf745bb80ae99ae80f0dd6a/message",
-          message.id
+          "https://crudcrud.com/api/6f2a8b6b84074d46bd27bfe50a20953e/message/" +
+            messageId
         )
 
-        .then((res) => {
-          this.message = res.data.results;
-          console.log("Message supprimé");
+        .then(() => {
+          alert("Message supprimé");
           location.reload();
         })
         .catch((error) => {
@@ -105,4 +83,19 @@ export default {
 </script>
 
 <style>
+#message .card {
+  border: outset 2px #01002a;
+}
+#message .card-header {
+  background-color: #01002a;
+}
+#message .card-footer {
+  border-top: outset 2px #01002a;
+}
+#message h4 {
+  font-size: 30px;
+}
+#message h5 span {
+  font-weight: bold;
+}
 </style>

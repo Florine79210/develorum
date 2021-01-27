@@ -1,6 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
 import App from "../App.vue";
 
+import MessageModif from "../components/MessageModif.vue"
+
 
 const routes = [
   {
@@ -8,6 +10,11 @@ const routes = [
     name: "App",
     component: App,
   },
+  {
+    path:"/MessageModif/:id",
+    component: MessageModif,
+    name:"MessageModif",
+  }
  
 ];
 
