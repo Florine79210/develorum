@@ -1,5 +1,11 @@
 <template>
   <Header />
+
+<!-- navbar temporaire = auth -->
+  <NavBar />
+  <router-view/>
+  <!-- --------------- -->
+
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div class="col-md-3">
@@ -21,6 +27,10 @@ import Form from "./components/Form.vue";
 import MessagesList from "./components/MessagesList.vue";
 import Footer from "./components/Footer.vue";
 
+//  navbar temporaire = auth
+import NavBar from '@/components/NavBar.vue'
+//--------------------------------------------------------------------
+
 export default {
   name: "App",
   components: {
@@ -28,6 +38,10 @@ export default {
     Form,
     MessagesList,
     Footer,
+
+// navbar temporaire = auth
+    NavBar,
+  //-----------------------------
   },
 
   data() {
