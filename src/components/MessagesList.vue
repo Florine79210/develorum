@@ -8,6 +8,7 @@
         :country="message.country"
         :title="message.title"
         :tags="message.tags"
+        :image="message.image"
         :content="message.content"
         :date="message.date"
       />

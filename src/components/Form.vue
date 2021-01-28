@@ -1,5 +1,5 @@
 <template>
-  <div id="form">
+  <div id="form" class="mt-4">
     <button
       class="btn btnCollapsePost p-3 text-white"
       type="button"
@@ -12,7 +12,7 @@
     </button>
 
     <div class="collapse" id="collapseForm">
-      <div class="container mt-3 w-75">
+      <div class="container mt-3">
         <form @submit="checkForm" method="post">
           <p v-if="errors.length">
               <b>Erreur(s) !</b>
@@ -31,7 +31,7 @@
                   id="inputPseudo"
                   name="inputPseudo"
                   v-model="inputPseudo"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                   aria-describedby="pseudoHelpBlock"
                 />
                 <div id="pseudoHelpBlock" class="form-text">
@@ -46,7 +46,7 @@
                   id="inputCity"
                   name="inputCity"
                   v-model="inputCity"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                 />
               </div>
 
@@ -57,7 +57,7 @@
                   id="inputCountry"
                   name="inputCountry"
                   v-model="inputCountry"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                 />
               </div>
 
@@ -70,7 +70,7 @@
                   id="inputMessageTitle"
                   name="inputMessageTitle"
                   v-model="inputMessageTitle"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                 />
               </div>
 
@@ -81,8 +81,23 @@
                   id="inputMessageTags"
                   name="inputMessageTags"
                   v-model="inputMessageTags"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                 />
+              </div>
+
+              <div class="mt-2 mb-2">
+                <label for="inputImage" class="col-form-label">Image:</label>
+                <input
+                  type="text"
+                  id="inputImage"
+                  name="inputImage"
+                  v-model="inputImage"
+                  class="form-control text-center text-white"
+                  aria-describedby="imageHelpBlock"
+                />
+                 <div id="imageHelpBlock" class="form-text">
+                  Insérez ici le chemin de l'image que vous voulez insérer.
+                </div>
               </div>
 
               <div class="mt-2 mb-2">
@@ -92,7 +107,7 @@
                   id="inputMessage"
                   name="inputMessage"
                   v-model="inputMessage"
-                  class="form-control text-center border-dark"
+                  class="form-control text-center text-white"
                   aria-describedby="messageHelpBlock"
                 />
                 <div id="messageHelpBlock" class="form-text">
@@ -100,7 +115,7 @@
                 </div>
               </div>
 
-              <div class="mt-2 mb-2">
+              <div class="mt-4 mb-2">
                 <button class="btn btnPost text-white" type="submit">Poster</button>
               </div>
             </div>
@@ -128,6 +143,7 @@ export default {
       inputCity: null,
       inputCountry: null,
       inputMessageTitle: null,
+      inputImage: null,
       inputMessageTags: null,
       inputMessage: null,
     };
@@ -142,6 +158,7 @@ export default {
         this.inputCity &&
         this.inputCountry &&
         this.inputMessageTitle &&
+        this.inputImage&&
         this.inputMessageTags &&
         this.inputMessage
       ) {
@@ -162,6 +179,9 @@ export default {
       if (!this.inputMessageTitle) {
         this.errors.push("Le champ 'intitulé du message' est vide !");
       }
+       if (!this.inputMessageImage) {
+        this.errors.push("Le champ 'image' est vide !");
+      }
       if (!this.inputMessageTags) {
         this.errors.push("Le champ 'tags' est vide !");
       }
@@ -176,13 +196,14 @@ export default {
         city: this.inputCity,
         country: this.inputCountry,
         title: this.inputMessageTitle,
+        image: this.inputImage,
         tags: this.inputMessageTags,
         content: this.inputMessage,
         date: new Date(),
       };
       axios
         .post(
-          "https://crudcrud.com/api/6f2a8b6b84074d46bd27bfe50a20953e/message",
+          "https://crudcrud.com/api/218e3848ab7d44dab9ee2cc61fcd83d1/message",
           newMessage
         )
 
@@ -198,7 +219,7 @@ export default {
 
 <style>
 #form .btnCollapsePost {
-  background-color: #01002a;
+  background-color: #08065f;
   font-size: 30px;
   font-weight: bold;
 }
@@ -206,13 +227,22 @@ export default {
   list-style: none;
 }
 #form .card {
-  border: solid 2px #01002a;
+  border: solid 2px #08065f;
+}
+#form .card-body label {
+  font-size: 20px;
+  font-weight: bold;
+  color: #08065f;
+}
+#form .card-body input {
+  font-size: 15px;
+  background-color: #08065f;
 }
 #inputMessage {
   height: 150px;
 }
 #form .btnPost {
-  background-color: #01002a;
+  background-color: #08065f;
   font-size: 20px;
   font-weight: bold;
 }

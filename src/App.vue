@@ -39,7 +39,7 @@ export default {
 
   created: function () {
     axios
-      .get("https://crudcrud.com/api/6f2a8b6b84074d46bd27bfe50a20953e/message")
+      .get("https://crudcrud.com/api/218e3848ab7d44dab9ee2cc61fcd83d1/message")
 
       .then((res) => {
         this.messages = res.data;
@@ -60,6 +60,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  margin-top: 60px;
+  margin-top: 100px;
 }
 </style>
